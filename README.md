@@ -1,4 +1,3 @@
-python_playground
+HNReader for Mac OS X
 =================
-
-python programming and all
+Qt PySide based python application to read ycombinator hacker news web page.
