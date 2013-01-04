@@ -8,7 +8,7 @@ Usage:
 from setuptools import setup
 
 APP = ['hnreader.py']
-DATA_FILES = ['y22w.png', 'template.html']
+DATA_FILES = ['yhn.png', 'template.html']
 OPTIONS = {'argv_emulation': True, 'includes': ['PySide.QtNetwork', 'lxml._elementpath', 'pygments.styles.default']}
 
 setup(
