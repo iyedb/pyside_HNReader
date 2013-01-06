@@ -1,5 +1,5 @@
 from PySide.QtCore import Qt, QUrl, QSize
-from PySide.QtGui import QMainWindow, QApplication, QDesktopServices
+from PySide.QtGui import QApplication, QMainWindow, QApplication, QDesktopServices
 from PySide.QtWebKit import QWebView, QWebPage
 from lxml import etree
 from urllib2 import urlopen
@@ -15,9 +15,12 @@ class MainWindow(QMainWindow):
 		self.setMinimumSize(width, height)
 		self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
 		self.setWindowFlags(self.windowFlags() | Qt.Tool)
+		self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
 		self.setWindowFlags(self.windowFlags() | Qt.CustomizeWindowHint)
 		self.setWindowFlags(self.windowFlags() & ~Qt.WindowMaximizeButtonHint)
 		self.setWindowFlags(self.windowFlags() & ~Qt.WindowMinimizeButtonHint)
+		self.setWindowFlags(self.windowFlags() & ~Qt.WindowSystemMenuHint)
+
 		self.view = QWebView(self)
 		self.view.page().setViewportSize(QSize(width, height))
 		self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
@@ -25,6 +28,8 @@ class MainWindow(QMainWindow):
 		super(MainWindow, self).setCentralWidget(self.view)
 	
 	def link_click_handler(self, url):
+		#if url = QUrl('about:blank#quit'):
+		#QApplication.instance().quit()
 		QDesktopServices.openUrl(url)
 
 	def showEvent(self, event):
