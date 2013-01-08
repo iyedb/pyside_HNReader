@@ -34,8 +34,6 @@ class MainWindow(QMainWindow):
 		super(MainWindow, self).setCentralWidget(self.view)
 	
 	def link_click_handler(self, url):
-		#if url = QUrl('about:blank#quit'):
-		#QApplication.instance().quit()
 		if url.path() == u'blank':
 			if url.hasFragment():
 				if url.fragment() == u'quit':
