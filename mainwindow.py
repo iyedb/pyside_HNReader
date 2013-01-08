@@ -36,7 +36,12 @@ class MainWindow(QMainWindow):
 	def link_click_handler(self, url):
 		#if url = QUrl('about:blank#quit'):
 		#QApplication.instance().quit()
-		QDesktopServices.openUrl(url)
+		if url.path() == u'blank':
+			if url.hasFragment():
+				if url.fragment() == u'quit':
+					QApplication.instance().quit()
+		else:			
+			QDesktopServices.openUrl(url)
 
 	def th_started(self):
 		pass
