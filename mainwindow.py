@@ -4,6 +4,7 @@ from PySide.QtWebKit import QWebView, QWebPage
 from lxml import etree
 from urllib2 import urlopen
 from mako.template import Template
+from htmlgenerator import HNhtmlGenerator
 
 
 class MainWindow(QMainWindow):
@@ -25,6 +26,11 @@ class MainWindow(QMainWindow):
 		self.view.page().setViewportSize(QSize(width, height))
 		self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
 		self.view.page().linkClicked.connect(self.link_click_handler)
+
+		self.th = HNhtmlGenerator()
+		self.th.started.connect(self.th_started)
+		self.th.finished.connect(self.th_finished)
+
 		super(MainWindow, self).setCentralWidget(self.view)
 	
 	def link_click_handler(self, url):
@@ -32,9 +38,16 @@ class MainWindow(QMainWindow):
 		#QApplication.instance().quit()
 		QDesktopServices.openUrl(url)
 
-	def showEvent(self, event):
-		self.view.setHtml( self.generate_html() )
+	def th_started(self):
+		pass
 
+	def th_finished(self):
+		self.view.setHtml( self.th.getHtml() )
+
+	def showEvent(self, event):
+		self.th.start()
+
+	"""
 	def generate_html(self):
 
 		def process_subtexttr(tr_tag):
@@ -99,6 +112,7 @@ class MainWindow(QMainWindow):
 		template_file = QUrl.fromLocalFile('template.html')	
 		template = Template( filename=template_file.path() )	
 		return template.render_unicode(rows=entries)
+	"""
 
 
 
