@@ -6,4 +6,4 @@ Depends mainly on
 - mako template engine
 - lxml
 
-For the moment runs is a terminal with 'python hnreader.py'
+Run in a terminal with 'python hnreader.py'
