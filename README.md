@@ -7,3 +7,10 @@ Depends mainly on
 - lxml
 
 Run in a terminal with 'python hnreader.py'
+
+To create a self contained python app bundle: use py2app
+`pip install py2app`
+then run inside the project directory
+`python setup.py py2app`
+
+Fork and contribute!
